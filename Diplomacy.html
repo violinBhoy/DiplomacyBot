@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Diplomacy</title>
+        <link rel="stylesheet" href="DiplomacyCSS.css">
+        <script src="DiplomacyRunner.js"></script>
+    </head>
+    <body>
+        <header id="header">
+            <h1>Diplomacy</h1>
+        </header>
+        <main class="fc">
+            <canvas id="myCanvas" width="1250" height="750"></canvas>
+            <article id="orders">
+                <section id="buttons">
+                    <button id="move" onclick="openMoveMenue();">Moves</button>
+                    <button id="support" onclick="openSupportMenue();">Supports</button>
+                    <button id="build" onclick="openBuildMenue();">Builds</button>
+                    <button id="disband" onclick="openDisbandMenue();">Disbands</button>
+                    <button id="resign" onclick="openResignMenue();">Resignation</button>
+                </section>
+                <section id="inputs" class="fc"></section>
+                <section id="notification"></section>
+            </article>
+        </main>
+    </body>
+</html>
