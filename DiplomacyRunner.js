@@ -28,10 +28,20 @@ function openSupportMenue() {//clear input section, show inputs for country, A/F
 
 function openBuildMenue() {//clear input section, show inputs for country, A/F, place, button for build it
     console.log("build");
+    let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
+    let htmlAF = '<label for="unit">Unit:</label><input id="unit" class="unit" type="text" value="">';
+    let htmlPlace = '<label for="place">Location:</label><input id="place" type="text" value="">';
+    let htmlButton = '<button id="makeBuild" onclick="build();" class="make">Build</button>'; 
+    document.getElementById("inputs").innerHTML = htmlCountry + htmlAF + htmlPlace + htmlButton;
 }
 
 function openDisbandMenue() {//clear input section, show iniputs for country, A/F, place, button for disband it 
     console.log("disband");
+    let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
+    let htmlAF = '<label for="unit">Unit:</label><input id="unit" class="unit" type="text" value="">';
+    let htmlPlace = '<label for="place">Location:</label><input id="place" type="text" value="">';
+    let htmlButton = '<button id="makeDisband" onclick="disband();" class="make">Disband</button>'; 
+    document.getElementById("inputs").innerHTML = htmlCountry + htmlAF + htmlPlace + htmlButton;
 }
 
 function openResignMenue() {//clear input section, show input for country, button for make resignation
