@@ -1,7 +1,11 @@
-canvas { border: 1px solid black; }
+canvas { 
+    border: 1px solid black; 
+    width: 55%;
+    height: 50%;
+}
 
 button {
-    margin-left:40px;
+    margin-left:20px;
     border-radius: 25px;
     box-shadow: 2px 2px;
 }
