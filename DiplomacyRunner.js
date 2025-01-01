@@ -1,8 +1,46 @@
+let countries = [];//contain the countries
+let places = [];//contain the places
+let canvas;
+let ctx;
+let w, h;
+let image;
 
+window.onload = function init() {
+    //set up canvas for drawing
+    canvas = document.getElementById("myCanvas");
+    w = canvas.width;
+    h = canvas.height;
+    ctx = canvas.getContext('2d');
+    image = document.getElementById("map");
 
+    //set up countries
+    countries[0] = new Country("england", "dark blue", 1, 2);
+    countries[0].createStart();
+    countries[1] = new Country("france", "light blue", 2, 1);
+    countries[1].createStart();
+    countries[2] = new Country("germany", "black", 2, 1);
+    countries[2].createStart();
+    countries[3] = new Country("italy", "green", 2, 1);
+    countries[3].createStart();
+    countries[4] = new Country("austria", "red", 2, 1);
+    countries[4].createStart();
+    countries[5] = new Country("turkey", "yellow", 2, 1);
+    countries[5].createStart();
+    countries[6] = new Country("russia", "white", 2, 2);
+    countries[6].createStart();
 
+    //set up places
 
+    //go to a main loop for animation
+    mainLoop();
+}
 
+function mainLoop() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(image, 0, 0, 130, 100);
+
+    requestAnimationFrame(mainLoop);
+}
 
 function openMoveMenue() {//clear input section, show inputs for country, A/F, placeCurrent, placeDestination, button for make move
     console.log("move");

@@ -5,12 +5,16 @@
         <title>Diplomacy</title>
         <link rel="stylesheet" href="DiplomacyCSS.css">
         <script src="DiplomacyRunner.js"></script>
+        <script src="Country.js"></script>
+        <script src="Place.js"></script>
+        <script src="Army.js"></script>
+        <script src="Fleet.js"></script>
     </head>
     <body>
         <header id="header">
             <h1>Diplomacy</h1>
         </header>
-        <main>
+        <main class="fc">
             <canvas id="myCanvas"></canvas>
             <article id="orders">
                 <section id="buttons">
@@ -31,4 +35,7 @@
             </p>
         </footer>
     </body>
+    <div style="display:none">
+        <img id="map" src="Diplomacy_Game_Board_-__Classic_.png">
+    </div>
 </html>
