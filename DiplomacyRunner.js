@@ -37,7 +37,7 @@ window.onload = function init() {
 
 function mainLoop() {
     ctx.clearRect(0, 0, w, h);
-    ctx.drawImage(image, 0, 0, 130, 100);
+    ctx.drawImage(image, 0, 0, w, h);
 
     requestAnimationFrame(mainLoop);
 }

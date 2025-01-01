@@ -1,7 +1,5 @@
 canvas { 
     border: 1px solid black; 
-    width: 780px;
-    height: 600px;
 }
 
 button {
@@ -18,7 +16,7 @@ button:hover {
 input { 
     margin: 5px; 
     height: 15px;
-    width: 90px;
+    width: 90px;    
 }
 
 .fc {
