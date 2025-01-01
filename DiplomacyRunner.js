@@ -15,21 +15,22 @@ window.onload = function init() {
 
     //set up countries
     countries[0] = new Country("england", "dark blue", 1, 2);
-    countries[0].createStart();
     countries[1] = new Country("france", "light blue", 2, 1);
-    countries[1].createStart();
     countries[2] = new Country("germany", "black", 2, 1);
-    countries[2].createStart();
     countries[3] = new Country("italy", "green", 2, 1);
-    countries[3].createStart();
     countries[4] = new Country("austria", "red", 2, 1);
-    countries[4].createStart();
     countries[5] = new Country("turkey", "yellow", 2, 1);
-    countries[5].createStart();
     countries[6] = new Country("russia", "white", 2, 2);
-    countries[6].createStart();
 
     //set up places
+    createPlaces(countries, places);
+    countries[0].createStart();
+    countries[1].createStart();
+    countries[2].createStart();
+    countries[3].createStart();
+    countries[4].createStart();
+    countries[5].createStart();
+    countries[6].createStart();
 
     //go to a main loop for animation
     mainLoop();
