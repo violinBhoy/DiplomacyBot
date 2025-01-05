@@ -14,8 +14,8 @@ window.onload = function init() {
     image = document.getElementById("map");
 
     //set up countries
-    countries[0] = new Country("england", "dark blue", 1, 2);
-    countries[1] = new Country("france", "light blue", 2, 1);
+    countries[0] = new Country("england", "darkblue", 1, 2);
+    countries[1] = new Country("france", "lightblue", 2, 1);
     countries[2] = new Country("germany", "black", 2, 1);
     countries[3] = new Country("italy", "green", 2, 1);
     countries[4] = new Country("austria", "red", 2, 1);
