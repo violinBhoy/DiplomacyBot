@@ -6,7 +6,6 @@ function Fleet(x, y, color) {
     this.color = color;
 
     this.draw = function(ctx) {//equilateral triangle with sides of length 20
-        console.log("Drawing in progress...");
         ctx.fillStyle = "black";
         ctx.beginPath();//draw border
         ctx.moveTo(this.x-3, this.y-2);

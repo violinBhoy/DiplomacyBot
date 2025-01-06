@@ -23,7 +23,8 @@ window.onload = function init() {
     countries[6] = new Country("russia", "white", 2, 2);
 
     //set up places
-    createPlaces(countries, places);
+    ctx.drawImage(image, 0, 0, w, h);//for debugging purposes
+    createPlaces(countries, places, ctx);//ctx is an argument for debugging purposes
     countries[0].createStart();
     countries[1].createStart();
     countries[2].createStart();
@@ -33,7 +34,7 @@ window.onload = function init() {
     countries[6].createStart();
 
     //go to a main loop for animation
-    mainLoop();
+    //mainLoop(); commented out for debugging purposes
 }
 
 function mainLoop() {
