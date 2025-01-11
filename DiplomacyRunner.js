@@ -86,4 +86,16 @@ function openDisbandMenue() {//clear input section, show iniputs for country, A/
 
 function openResignMenue() {//clear input section, show input for country, button for make resignation
     console.log("resign");
+    let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
+    let htmlButton = '<button id="makeDisband" onclick="resign();" class="make">Resign</button>';
+    document.getElementById("inputs").innerHTML = htmlCountry + htmlButton;
+}
+
+function openRetreatMenue() {
+    let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
+    let htmlAF = '<label for="unit">Unit:</label><input id="unit" class="unit" type="text" value="">';
+    let htmlPlaceCurrent = '<input id="placeCurrent" type="text" value=""><p>-----></p>';
+    let htmlPlaceDestination = '<input id="placeDestination" type="text" value="">';
+    let htmlButton = '<button id="makeMove" onclick="retreat();" class="make">Retreat</button>';
+    document.getElementById("inputs").innerHTML = htmlCountry + htmlAF + htmlPlaceCurrent + htmlPlaceDestination + htmlButton; 
 }
