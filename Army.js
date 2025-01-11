@@ -1,15 +1,17 @@
 //A class for the Army
 //this draws the army, keeps track of location, and its order
-function Army(x, y, color) {
-    this.x = x;
-    this.y = y;
-    this.color = color;
-    this.side = 20;
+class Army {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.side = 20;
+    }
 
-    this.draw = function(ctx) {
+    draw(ctx) {
         ctx.fillStyle = "black";//black border
-        ctx.fillRect(x-2, y-2, this.side+4, this.side+4);
-        ctx.fillStyle = color;//square army the color of country
-        ctx.fillRect(x, y, this.side, this.side);
+        ctx.fillRect(this.x-2, this.y-2, this.side+4, this.side+4);
+        ctx.fillStyle = this.color;//square army the color of country
+        ctx.fillRect(this.x, this.y, this.side, this.side);
     }
 }
