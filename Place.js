@@ -6,21 +6,29 @@
 class Place {
     constuctor(name, x, y, type) {
         this.name = name;
+        this.coasts = new Map();
         this.x = x;//places on map
         this.y = y;
         this.type = type;//water, coast, land
-        this.adjacent;
+        this.armyAdjacent = [];//make it a map?
+        this.fleetAdjacent = [];
         this.port = false;//to deal with places array
     
-        this.defender;//who is "defending" place
-        this.attacker;//who is attacking place
+        this.defender = "";//who is "defending" place
+        this.attacker = "";//who is attacking place
         this.defense = 0;//number for defense points/units
         this.offense = 0;//number for offensive points/units
     }
 
-    setAdjacent(adjacents) {
-        for (let i = 0; i < adjacents.length; i++) {
-            this.adjacent[i] = adjacents[i];
+    setArmyAdjacent(armyAdjacents) {//what places are adjacent for armies - not all are adjacent for fleets AND armies
+        for (let i = 0; i < armyAdjacents.length; i++) {
+            this.armyAdjacent[i] = armyAdjacents[i];
+        }
+    }
+
+    setFleetAdjacent(fleetAdjacents) {
+        for (let i = 0; i < fleetAdjacents.length; i++) {
+            this.fleetAdjacent[i] = fleetAdjacents[i];
         }
     }
 
@@ -28,8 +36,13 @@ class Place {
         return this.port;
     }
 
-    addCoast(index, side, x, y) {
-        this.coasts[index] = new Place(side + " " + this.name, x, y, "coast");
+    addCoast(side, x, y) {
+        this.coastname = side + " " + this.name;
+        this.coasts.set(this.coastname, new Place(this.coastname, x, y, "coast"));
+    }
+
+    getCoast(name) {
+        return this.coasts.get(name);
     }
 }
 
@@ -50,31 +63,36 @@ class Port extends Place {
 
 function createPlaces(countries, places, ctx) {
     //for debugging purposes: finding exact locations
-    let army = new Army(200, 690, "blue");
+    let army = new Army(770, 570, "blue");
     army.draw(ctx);
 
     //water places first
-    places[0] = new Place("north atlantic", 100, 300, "water");
-    places[1] = new Place("norwegian sea", 450, 125, "water");
-    places[2] = new Place("barents sea", 825, 30, "water");
-    places[3] = new Place("north sea", 400, 350, "water");
-    places[4] = new Place("skagerrak", 500, 360, "water");
-    places[5] = new Place("helgoland bight", 440, 440, "water");
-    places[6] = new Place("baltic sea", 600, 430, "water");
-    places[7] = new Place("gulf of bothnia", 650, 330, "water");
-    places[8] = new Place("irish sea", 200, 480, "water");
-    places[9] = new Place("english channel", 270, 520, "water");
-    places[10] = new Place("mid atlantic", 50, 600, "water");
-    places[11] = new Place("west mediterranean", 300, 850, "water");
-    places[12] = new Place("gulf of lyon", 350, 770, "water");
-    places[13] = new Place("tyrhennian sea", 470, 840, "water");
-    places[14] = new Place("ionian sea", 570, 950, "water");
-    places[15] = new Place("adriatic sea", 560, 770, "water");
-    places[16] = new Place("aegean sea", 740, 920, "water");
-    places[17] = new Place("east mediterranean", 850, 960, "water");
-    places[18] = new Place("black sea", 870, 740, "water");
+    places.set("north atlantic", new Place("north atlantic", 100, 300, "water"));
+    places.set("norwegian sea", new Place("norwegian sea", 450, 125, "water"));
+    places.set("barents sea", new Place("barents sea", 825, 30, "water"));
+    places.set("north sea", new Place("north sea", 400, 350, "water"));
+    places.set("skagerrak", new Place("skagerrak", 500, 360, "water"));
+    places.set("helgoland bight", new Place("helgoland bight", 440, 440, "water"));
+    places.set("baltic sea", new Place("baltic sea", 600, 430, "water"));
+    places.set("gulf of bothnia", new Place("gulf of bothnia", 650, 330, "water"));
+    places.set("irish sea", new Place("irish sea", 200, 480, "water"));
+    places.set("english channel", new Place("english channel", 270, 520, "water"));
+    places.set("mid atlantic", new Place("mid atlantic", 50, 600, "water"));
+    places.set("west mediterranean", new Place("west mediterranean", 300, 850, "water"));
+    places.set("gulf of lyon", new Place("gulf of lyon", 350, 770, "water"));
+    places.set("tyrhennian sea", new Place("tyrhennian sea", 470, 840, "water"));
+    places.set("ionian sea", new Place("ionian sea", 570, 950, "water"));
+    places.set("adriatic sea", new Place("adriatic sea", 560, 770, "water"));
+    places.set("aegean sea", new Place("aegean sea", 740, 920, "water"));
+    places.set("east mediterranean", new Place("east mediterranean", 850, 960, "water"));
+    places.set("black sea", new Place("black sea", 870, 740, "water"));
 
-    //land but not ports
+    //land but not ports (going north to south)
+    places.set("wales", new Place("wales", 290, 460, "land"));
+    places.set("finland", new Place("finland", 700, 140, "land"));
+    places.set("livonia", new Place("livonia", 700, 420, "land"));
+    places.set("ukraine", new Place("ukraine", 770, 570, "land"));
+    //onto germany
 
     //ports
 

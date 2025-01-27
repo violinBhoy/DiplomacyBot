@@ -1,5 +1,5 @@
-let countries = [];//contain the countries
-let places = [];//contain the places
+let countries = new Map();//contain the countries
+let places = new Map();//contain the places
 let canvas;
 let ctx;
 let w, h;
@@ -14,24 +14,24 @@ window.onload = function init() {
     image = document.getElementById("map");
 
     //set up countries
-    countries[0] = new Country("england", "darkblue", 1, 2);
-    countries[1] = new Country("france", "lightblue", 2, 1);
-    countries[2] = new Country("germany", "black", 2, 1);
-    countries[3] = new Country("italy", "green", 2, 1);
-    countries[4] = new Country("austria", "red", 2, 1);
-    countries[5] = new Country("turkey", "yellow", 2, 1);
-    countries[6] = new Country("russia", "white", 2, 2);
+    countries.set("england", new Country("england", "darkblue", 1, 2));
+    countries.set("france", new Country("france", "lightblue", 2, 1));
+    countries.set("germany", new Country("germany", "black", 2, 1));
+    countries.set("italy", new Country("italy", "green", 2, 1));
+    countries.set("austria", new Country("austria", "red", 2, 1));
+    countries.set("turkey", new Country("turkey", "yellow", 2, 1));
+    countries.set("russia", new Country("russia", "white", 2, 2));
 
     //set up places
     ctx.drawImage(image, 0, 0, w, h);//for debugging purposes
     createPlaces(countries, places, ctx);//ctx is an argument for debugging purposes
-    countries[0].createStart();
-    countries[1].createStart();
-    countries[2].createStart();
-    countries[3].createStart();
-    countries[4].createStart();
-    countries[5].createStart();
-    countries[6].createStart();
+    countries.get("england").createStart();
+    countries.get("france").createStart();
+    countries.get("germany").createStart();
+    countries.get("italy").createStart();
+    countries.get("austria").createStart();
+    countries.get("turkey").createStart();
+    countries.get("russia").createStart();
 
     //go to a main loop for animation
     //mainLoop(); commented out for debugging purposes
