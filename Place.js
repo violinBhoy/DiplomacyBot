@@ -63,7 +63,7 @@ class Port extends Place {
 
 function createPlaces(countries, places, ctx) {
     //for debugging purposes: finding exact locations
-    let army = new Army(770, 570, "blue");
+    let army = new Army(700, 140, "blue");
     army.draw(ctx);
 
     //water places first
@@ -87,12 +87,21 @@ function createPlaces(countries, places, ctx) {
     places.set("east mediterranean", new Place("east mediterranean", 850, 960, "water"));
     places.set("black sea", new Place("black sea", 870, 740, "water"));
 
-    //land but not ports (going north to south)
-    places.set("wales", new Place("wales", 290, 460, "land"));
-    places.set("finland", new Place("finland", 700, 140, "land"));
+    //land but not ports
+    places.set("finland", new Place("finland", 700, 140, "land"));//"russia"
     places.set("livonia", new Place("livonia", 700, 420, "land"));
     places.set("ukraine", new Place("ukraine", 770, 570, "land"));
-    //onto germany
+    places.set("ruhr", new Place("ruhr", 440, 545, "land"));//"germany"
+    places.set("silesia", new Place("silesia", 580, 530, "land"));
+    places.set("prussia", new Place("prussia", 620, 480, "land"));
+    places.set("wales", new Place("wales", 290, 460, "land"));//"england"
+    places.set("burgundy", new Place("burgundy", 390, 620, "land"));//"france"
+    places.set("gascony", new Place("gascony", 290, 670, "land"));
+    places.set("picardy", new Place("picardy", 350, 550, "land"));
+    places.set("piemonte", new Place("piemonte", 435, 690, "land"));//"italy"
+    places.set("tuscany", new Place("tuscany", 475, 750, "land"));
+    places.set("apulia", new Place("apulia", 560, 790, "land"));
+    //onto austria
 
     //ports
 

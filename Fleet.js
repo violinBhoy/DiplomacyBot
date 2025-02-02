@@ -2,7 +2,7 @@
 //for drawing and keeping track of the fleet
 class Fleet {
     constructor(x, y, color) {
-        this.x = x;
+        this.x = x-10;
         this.y = y;
         this.color = color;
     }
