@@ -13,6 +13,7 @@ class Place {
         this.armyAdjacent = [];//make it a map?
         this.fleetAdjacent = [];
         this.port = false;//to deal with places array
+        this.armyAdjust = 1;//make armies smaller for smaller places
     
         this.defender = "";//who is "defending" place
         this.attacker = "";//who is attacking place
@@ -44,6 +45,10 @@ class Place {
     getCoast(name) {
         return this.coasts.get(name);
     }
+
+    setArmyAdjust(num) {//deal with this after everything works
+        this.armyAdjust = num;
+    }
 }
 
 class Port extends Place {
@@ -63,8 +68,11 @@ class Port extends Place {
 
 function createPlaces(countries, places, ctx) {
     //for debugging purposes: finding exact locations
-    let army = new Army(640, 810, "blue");
+    let army = new Army(670, 660, "blue");
     army.draw(ctx);
+    ctx.beginPath();
+    ctx.arc(631, 658, 5, 0, 2*Math.PI);
+    ctx.fill();
 
     //water places first
     places.set("north atlantic", new Place("north atlantic", 100, 300, "water"));
@@ -95,6 +103,7 @@ function createPlaces(countries, places, ctx) {
     places.set("silesia", new Place("silesia", 580, 530, "land"));
     places.set("prussia", new Place("prussia", 620, 480, "land"));
     places.set("wales", new Place("wales", 290, 460, "land"));
+    places.set("clyde", new Place("clyde", 300, 335, "land"));
     places.set("burgundy", new Place("burgundy", 390, 620, "land"));
     places.set("gascony", new Place("gascony", 290, 670, "land"));
     places.set("picardy", new Place("picardy", 350, 550, "land"));
@@ -106,10 +115,40 @@ function createPlaces(countries, places, ctx) {
     places.set("galicia", new Place("galicia", 680, 590, "land"));
     places.set("syria", new Place("syria", 1120, 920, "land"));
     places.set("armenia", new Place("armenia", 1150, 820, "land"));
-    places.set("north africa", new Place("north africa", 100, 900, "land"))
+    places.set("north africa", new Place("north africa", 100, 900, "land"));
     places.set("albania", new Place("albania", 640, 810, "land"));
 
-    //ports
+    //ports and setting temporary owners - countries done: France, england, germany, italy, austria
+    places.set("brest", new Port("brest", 280, 570, "land", 255, 557));
+    places.get("brest").setOwner(countries.get("france"));
+    places.set("paris", new Port("paris", 330, 610,"land", 358, 595));
+    places.get("paris").setOwner(countries.get("france"));
+    places.set("marseilles", new Port("marseilles", 370, 690, "land", 378, 720));
+    places.get("marseilles").setOwner(countries.get("france"));
+    places.set("london", new Port("london", 330, 470, "land", 340, 498));
+    places.get("london").setOwner(countries.get("england"));
+    places.set("liverpool", new Port("liverpool", 310, 400, "land", 323, 433));
+    places.get("liverpool").setOwner(countries.get("england"));
+    places.set("edinburgh", new Port("edinburgh", 325, 335, "land", 338, 381));
+    places.get("edinburgh").setOwner(countries.get("england"));
+    places.set("kiel", new Port("kiel", 480, 500, "land", 493, 476));
+    places.get("kiel").setOwner(countries.get("germany"));
+    places.set("munich", new Port("munich", 480, 570, "land", 502, 608));
+    places.get("munich").setOwner(countries.get("germany"));
+    places.set("berlin", new Port("berlin", 540, 470, "land", 544, 504));
+    places.get("berlin").setOwner(countries.get("germany"));
+    places.set("venezia", new Port("venezia", 485, 705, "land", 518, 682));
+    places.get("venezia").setOwner(countries.get("italy"));
+    places.set("roma", new Port("roma", 527, 795, "land", 511, 795));
+    places.get("roma").setOwner(countries.get("italy"));
+    places.set("napoli", new Port("napoli", 550, 845, "land", 555, 832));
+    places.get("napoli").setOwner(countries.get("italy"));
+    places.set("vienna", new Port("vienna", 590, 630, "land", 581, 636));
+    places.get("vienna").setOwner(countries.get("austria"));
+    places.set("trieste", new Port("trieste", 580, 710, "land", 560, 701));
+    places.get("trieste").setOwner(countries.get("austria"));
+    places.set("budapest", new Port("budapest", 670, 660, "land", 631, 658));
+    places.get("budapest").setOwner(countries.get("austria"));
 
     //add coasts
 

@@ -20,7 +20,9 @@ window.onload = function init() {
     countries.set("italy", new Country("italy", "green", 2, 1));
     countries.set("austria", new Country("austria", "red", 2, 1));
     countries.set("turkey", new Country("turkey", "yellow", 2, 1));
-    countries.set("russia", new Country("russia", "white", 2, 2));
+    countries.set("russia", new Country("russia", "gray", 2, 2));
+    //placeholder country for when something is not owned by a real country - for algorithm purposes only
+    countries.set("placeholder", new Country("placeholder", "none", 0, 0));
 
     //set up places
     ctx.drawImage(image, 0, 0, w, h);//for debugging purposes
