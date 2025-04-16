@@ -68,10 +68,8 @@ class Port extends Place {
 
 function createPlaces(countries, places, ctx) {
     //for debugging purposes: finding exact locations
-    let army = new Army(670, 660, "blue");
+    let army = new Fleet(810, 100, "blue");
     army.draw(ctx);
-    ctx.beginPath();
-    ctx.arc(631, 658, 5, 0, 2*Math.PI);
     ctx.fill();
 
     //water places first
@@ -118,7 +116,7 @@ function createPlaces(countries, places, ctx) {
     places.set("north africa", new Place("north africa", 100, 900, "land"));
     places.set("albania", new Place("albania", 640, 810, "land"));
 
-    //ports and setting temporary owners - countries done: France, england, germany, italy, austria
+    //ports and setting temporary owners
     places.set("brest", new Port("brest", 280, 570, "land", 255, 557));
     places.get("brest").setOwner(countries.get("france"));
     places.set("paris", new Port("paris", 330, 610,"land", 358, 595));
@@ -149,8 +147,42 @@ function createPlaces(countries, places, ctx) {
     places.get("trieste").setOwner(countries.get("austria"));
     places.set("budapest", new Port("budapest", 670, 660, "land", 631, 658));
     places.get("budapest").setOwner(countries.get("austria"));
+    places.set("saint petersburg", new Port("petersburg", 810, 310, "land", 784, 314));
+    places.get("saint petersburg").setOwner(countries.get("russia"));
+    places.set("moscow", new Port("moscow", 860, 450, "land", 917, 423));
+    places.get("moscow").setOwner(countries.get("russia"));
+    places.set("warsaw", new Port("warsaw", 660, 540, "land", 655, 531));
+    places.get("warsaw").setOwner(countries.get("russia"));
+    places.set("stevastopol", new Port("stevastopol", 900, 600, "land", 899, 694));
+    places.get("stevastopol").setOwner(countries.get("russia"));
+    places.set("constantinople", new Port("constantinople", 810, 845, "land", 796, 807));
+    places.get("constantinople").setOwner(countries.get("turkey"));
+    places.set("ankara", new Port("ankara", 950, 810, "land", 921, 811));
+    places.get("ankara").setOwner(countries.get("turkey"));
+    places.set("smyrna", new Port("smyrna",900, 880, "land", 803, 899));
+    places.get("smyrna").setOwner(countries.get("turkey"));
+
+    //add ports that don't have temporary owners
+    places.set("spain", new Port("spain", 160, 780, "land", 189,  748));
+    places.set("portugal", new Port("portugal", 100, 710, "land", 75,  751));
+    places.set("tunisia", new Port("tunisia", 420, 930, "land", 432,  909));
+    places.set("belgium", new Port("belgium", 400, 530, "land", 387,  527));
+    places.set("holland", new Port("holland", 430, 480, "land", 418,  505));
+    places.set("denmark", new Port("denmark", 490, 420, "land", 532,  434));
+    places.set("norway", new Port("norway", 495, 300, "land", 535,  304));
+    places.set("sweden", new Port("sweden", 580, 300, "land", 594,  371));
+    places.set("serbia", new Port("serbia", 660, 760, "land", 649,  743));
+    places.set("greece", new Port("greece", 670, 850, "land", 711,  894));
+    places.set("bulgaria", new Port("bulgaria", 740, 770, "land", 712,  776));
+    places.set("rumania", new Port("rumania", 740, 710, "land", 785,  720));
 
     //add coasts
+    places.get("spain").addCoast("north", 180, 690);
+    places.get("spain").addCoast("south", 190, 810);
+    places.get("bulgaria").addCoast("south", 750, 790);
+    places.get("bulgaria").addCoast("east", 770, 760);
+    places.get("saint petersburg").addCoast("south", 760, 330);
+    places.get("saint petersburg").addCoast("north", 810, 100);
 
     //add what each place a place is adjacent to
 }
