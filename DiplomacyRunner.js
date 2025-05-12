@@ -26,7 +26,7 @@ window.onload = function init() {
 
     //set up places
     ctx.drawImage(image, 0, 0, w, h);//for debugging purposes
-    createPlaces(countries, places, ctx);//ctx is an argument for debugging purposes
+    createPlaces(countries, places);
     countries.get("england").createStart();
     countries.get("france").createStart();
     countries.get("germany").createStart();
