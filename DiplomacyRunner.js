@@ -36,18 +36,18 @@ window.onload = function init() {
     countries.get("russia").createStart();
 
     //go to a main loop for animation
-    //mainLoop(); commented out for debugging purposes
+    mainLoop();
 }
 
 function mainLoop() {
     ctx.clearRect(0, 0, w, h);
     ctx.drawImage(image, 0, 0, w, h);
+    drawUnits(countries, ctx);
 
     requestAnimationFrame(mainLoop);
 }
 
 function openMoveMenue() {//clear input section, show inputs for country, A/F, placeCurrent, placeDestination, button for make move
-    console.log("move");
     let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
     let htmlAF = '<label for="unit">Unit:</label><input id="unit" class="unit" type="text" value="">';
     let htmlPlaceCurrent = '<input id="placeCurrent" type="text" value=""><p>-----></p>';
@@ -57,7 +57,6 @@ function openMoveMenue() {//clear input section, show inputs for country, A/F, p
 }
 
 function openSupportMenue() {//clear input section, show inputs for country, A/F, placeCurrent, A/F support, placeCurrent for support, place Destination, button for make support
-    console.log("support");
     let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
     let htmlAF = '<label for="unit">Unit:</label><input id="unit" class="unit" type="text" value="">';
     let htmlPlaceCurrent = '<input id="placeCurrent" type="text" value=""><p></p>';
@@ -69,7 +68,6 @@ function openSupportMenue() {//clear input section, show inputs for country, A/F
 }
 
 function openBuildMenue() {//clear input section, show inputs for country, A/F, place, button for build it
-    console.log("build");
     let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
     let htmlAF = '<label for="unit">Unit:</label><input id="unit" class="unit" type="text" value="">';
     let htmlPlace = '<label for="place">Location:</label><input id="place" type="text" value="">';
@@ -78,7 +76,6 @@ function openBuildMenue() {//clear input section, show inputs for country, A/F, 
 }
 
 function openDisbandMenue() {//clear input section, show iniputs for country, A/F, place, button for disband it 
-    console.log("disband");
     let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
     let htmlAF = '<label for="unit">Unit:</label><input id="unit" class="unit" type="text" value="">';
     let htmlPlace = '<label for="place">Location:</label><input id="place" type="text" value="">';
@@ -87,7 +84,6 @@ function openDisbandMenue() {//clear input section, show iniputs for country, A/
 }
 
 function openResignMenue() {//clear input section, show input for country, button for make resignation
-    console.log("resign");
     let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
     let htmlButton = '<button id="makeDisband" onclick="resign();" class="make">Resign</button>';
     document.getElementById("inputs").innerHTML = htmlCountry + htmlButton;
@@ -100,4 +96,91 @@ function openRetreatMenue() {
     let htmlPlaceDestination = '<input id="placeDestination" type="text" value="">';
     let htmlButton = '<button id="makeMove" onclick="retreat();" class="make">Retreat</button>';
     document.getElementById("inputs").innerHTML = htmlCountry + htmlAF + htmlPlaceCurrent + htmlPlaceDestination + htmlButton; 
+}
+
+function build() {
+    let country = document.getElementById("country").value.toLowerCase();
+    let unit = document.getElementById("unit").value.toLowerCase();
+    let place = document.getElementById("place").value.toLowerCase();
+    let coast = "";
+    if (place.includes("south") || place.includes("north")) {//possibly a coast
+        coast = place.substring(0, 6);
+        place = place.substring(6);
+        if (!places.has(place) && !places.has(coast + place)) {//direction place and place do not exist
+            alert(coast + place + " does not exist");//invalid input
+            return;
+        }
+        if (!places.has(coast + place) && places.has(place)) {//direction place does not exist but place does
+            //it must be a coast and we cannot build an army there
+            if (unit == "a") {
+                alert("An army cannot be built at " + coast + place);
+                return;
+            }
+        }
+        if (places.has(coast + place) && !places.has(place)) {//direction place exists but place does not
+            //it is not a coast, coast and place should not be separate
+            place = coast + place;
+        }
+    }
+    else if (!places.has(place)) {
+        alert(place + " does not exist");
+        return;
+    }
+    if (!countries.has(country)) {
+        alert(country + " does not exist");
+        return;
+    }
+    if (places.get(place).port == false) {
+        alert(place + " is not a port");
+        return;
+    }
+    if (places.get(place).home != country) {
+        alert(place + " is not a home tile for " + country);
+        return;
+    }
+    if (places.get(place).owner != country) {
+        alert(country + " does not own " + place);
+        return;
+    }
+    if (countries.get(country).armyPlaces.includes(place) || countries.get(country).fleetPlaces.includes(place)) {
+        alert("There is already a unit at " + place);
+        return;
+    }
+    if (unit == "a") {
+        //build it
+        countries.get(country).armyPlaces.push(place);
+        countries.get(country).armies.push(new Army(places.get(place).x, places.get(place).y, countries.get(country).color));
+        //clear inputs
+        document.getElementById("country").value = "";
+        document.getElementById("unit").value = "";
+        document.getElementById("place").value = "";
+    }
+    else if (unit == "f") {
+        //check if it is a coast and it was not specified
+        if (places.get(place).coasts.size > 0 && coast.length == 0) {
+            alert(place + " must have a coast specified to build a fleet on it");
+            return;
+        }
+        //check if it is landlocked
+        if (places.get(place).fleetAdjacent.length == 0 && places.get(place).coasts.size == 0) {
+            alert(place + " is landlocked and cannot support a fleet");
+            return;
+        }
+        //build it
+        countries.get(country).fleetPlaces.push(place);
+        if (coast.length == 0) {
+            countries.get(country).fleets.push(new Fleet(places.get(place).x, places.get(place).y, countries.get(country).color));
+        }
+        else {
+            let x = places.get(place).coasts.get(coast + place).x;
+            let y = places.get(place).coasts.get(coast + place).y;
+            countries.get(country).fleets.push(new Fleet(x, y, countries.get(country).color));
+        }
+        //clear inputs
+        document.getElementById("country").value = "";
+        document.getElementById("unit").value = "";
+        document.getElementById("place").value = "";
+    } else {
+        alert("unit type unrecognized");
+    }
 }

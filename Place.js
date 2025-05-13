@@ -59,10 +59,15 @@ class Port extends Place {
         this.portY = portY;
         this.owner;
         this.port = true;
+        this.home;//saves who's home this is
     }
 
     setOwner(country) {
         this.owner = country;
+    }
+
+    setHome(country) {
+        this.home = country;
     }
 }
 
@@ -119,49 +124,71 @@ function createPlaces(countries, places) {
 
     //ports and setting temporary owners
     places.set("brest", new Port("brest", 280, 570, "land", 255, 557));
-    places.get("brest").setOwner(countries.get("france"));
+    places.get("brest").setOwner("france");
+    places.get("brest").setHome("france");
     places.set("paris", new Port("paris", 330, 610,"land", 358, 595));
-    places.get("paris").setOwner(countries.get("france"));
+    places.get("paris").setOwner("france");
+    places.get("paris").setHome("france")
     places.set("marseilles", new Port("marseilles", 370, 690, "land", 378, 720));
-    places.get("marseilles").setOwner(countries.get("france"));
+    places.get("marseilles").setOwner("france");
+    places.get("marseilles").setHome("france");
     places.set("london", new Port("london", 330, 470, "land", 340, 498));
-    places.get("london").setOwner(countries.get("england"));
+    places.get("london").setOwner("england");
+    places.get("london").setHome("england");
     places.set("liverpool", new Port("liverpool", 310, 400, "land", 323, 433));
-    places.get("liverpool").setOwner(countries.get("england"));
+    places.get("liverpool").setOwner("england");
+    places.get("liverpool").setHome("england");
     places.set("edinburgh", new Port("edinburgh", 325, 335, "land", 338, 381));
-    places.get("edinburgh").setOwner(countries.get("england"));
+    places.get("edinburgh").setOwner("england");
+    places.get("edinburgh").setHome("england");
     places.set("kiel", new Port("kiel", 480, 500, "land", 493, 476));
-    places.get("kiel").setOwner(countries.get("germany"));
+    places.get("kiel").setOwner("germany");
+    places.get("kiel").setHome("germany");
     places.set("munich", new Port("munich", 480, 570, "land", 502, 608));
-    places.get("munich").setOwner(countries.get("germany"));
+    places.get("munich").setOwner("germany");
+    places.get("munich").setHome("germany");
     places.set("berlin", new Port("berlin", 540, 470, "land", 544, 504));
-    places.get("berlin").setOwner(countries.get("germany"));
+    places.get("berlin").setOwner("germany");
+    places.get("berlin").setHome("germany");
     places.set("venezia", new Port("venezia", 485, 705, "land", 518, 682));
-    places.get("venezia").setOwner(countries.get("italy"));
+    places.get("venezia").setOwner("italy");
+    places.get("venezia").setHome("italy");
     places.set("roma", new Port("roma", 527, 795, "land", 511, 795));
-    places.get("roma").setOwner(countries.get("italy"));
+    places.get("roma").setOwner("italy");
+    places.get("roma").setHome("italy");
     places.set("napoli", new Port("napoli", 550, 845, "land", 555, 832));
-    places.get("napoli").setOwner(countries.get("italy"));
+    places.get("napoli").setOwner("italy");
+    places.get("napoli").setHome("italy");
     places.set("vienna", new Port("vienna", 590, 630, "land", 581, 636));
-    places.get("vienna").setOwner(countries.get("austria"));
+    places.get("vienna").setOwner("austria");
+    places.get("vienna").setHome("austria");
     places.set("trieste", new Port("trieste", 580, 710, "land", 560, 701));
-    places.get("trieste").setOwner(countries.get("austria"));
+    places.get("trieste").setOwner("austria");
+    places.get("trieste").setHome("austria");
     places.set("budapest", new Port("budapest", 670, 660, "land", 631, 658));
-    places.get("budapest").setOwner(countries.get("austria"));
+    places.get("budapest").setOwner("austria");
+    places.get("budapest").setHome("austria");
     places.set("saint petersburg", new Port("saint petersburg", 810, 310, "land", 784, 314));
-    places.get("saint petersburg").setOwner(countries.get("russia"));
+    places.get("saint petersburg").setOwner("russia");
+    places.get("saint petersburg").setHome("russia");
     places.set("moscow", new Port("moscow", 860, 450, "land", 917, 423));
-    places.get("moscow").setOwner(countries.get("russia"));
+    places.get("moscow").setOwner("russia");
+    places.get("moscow").setHome("russia");
     places.set("warsaw", new Port("warsaw", 660, 540, "land", 655, 531));
-    places.get("warsaw").setOwner(countries.get("russia"));
+    places.get("warsaw").setOwner("russia");
+    places.get("warsaw").setHome("russia");
     places.set("stevastopol", new Port("stevastopol", 900, 600, "land", 899, 694));
-    places.get("stevastopol").setOwner(countries.get("russia"));
+    places.get("stevastopol").setOwner("russia");
+    places.get("stevastopol").setHome("russia");
     places.set("constantinople", new Port("constantinople", 810, 845, "land", 796, 807));
-    places.get("constantinople").setOwner(countries.get("turkey"));
+    places.get("constantinople").setOwner("turkey");
+    places.get("constantinople").setHome("turkey");
     places.set("ankara", new Port("ankara", 950, 810, "land", 921, 811));
-    places.get("ankara").setOwner(countries.get("turkey"));
+    places.get("ankara").setOwner("turkey");
+    places.get("ankara").setHome("turkey");
     places.set("smyrna", new Port("smyrna",900, 880, "land", 803, 899));
-    places.get("smyrna").setOwner(countries.get("turkey"));
+    places.get("smyrna").setOwner("turkey");
+    places.get("smyrna").setHome("turkey");
 
     //add ports that don't have temporary owners
     places.set("spain", new Port("spain", 160, 780, "land", 189,  748));
