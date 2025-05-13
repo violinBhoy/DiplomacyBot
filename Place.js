@@ -71,11 +71,11 @@ class Port extends Place {
     }
 }
 
-function createPlaces(countries, places) {
+function createPlaces(countries, places, ctx) {
     //for debugging purposes: finding exact locations
-    // let army = new Fleet(350, 430, "blue");
-    // army.draw(ctx);
-    // ctx.fill();
+    let army = new Army(320, 400, "blue");
+    army.draw(ctx);
+    ctx.fill();
 
     //water places first
     places.set("north atlantic", new Place("north atlantic", 100, 300, "water"));
@@ -132,13 +132,13 @@ function createPlaces(countries, places) {
     places.set("marseilles", new Port("marseilles", 370, 690, "land", 378, 720));
     places.get("marseilles").setOwner("france");
     places.get("marseilles").setHome("france");
-    places.set("london", new Port("london", 330, 470, "land", 340, 498));
+    places.set("london", new Port("london", 340, 470, "land", 340, 498));
     places.get("london").setOwner("england");
     places.get("london").setHome("england");
-    places.set("liverpool", new Port("liverpool", 310, 400, "land", 323, 433));
+    places.set("liverpool", new Port("liverpool", 320, 400, "land", 323, 433));
     places.get("liverpool").setOwner("england");
     places.get("liverpool").setHome("england");
-    places.set("edinburgh", new Port("edinburgh", 325, 335, "land", 338, 381));
+    places.set("edinburgh", new Port("edinburgh", 335, 335, "land", 338, 381));
     places.get("edinburgh").setOwner("england");
     places.get("edinburgh").setHome("england");
     places.set("kiel", new Port("kiel", 480, 500, "land", 493, 476));

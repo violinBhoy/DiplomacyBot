@@ -26,7 +26,7 @@ window.onload = function init() {
 
     //set up places
     ctx.drawImage(image, 0, 0, w, h);//for debugging purposes
-    createPlaces(countries, places);
+    createPlaces(countries, places, ctx);
     countries.get("england").createStart();
     countries.get("france").createStart();
     countries.get("germany").createStart();
@@ -65,6 +65,17 @@ function openSupportMenue() {//clear input section, show inputs for country, A/F
     let htmlPlaceDestination = '<input id="placeDestination" type="text" value="">';
     let htmlButton = '<button id="makeSupport" onclick="support();" class="make">Support</button>';
     document.getElementById("inputs").innerHTML = htmlCountry + htmlAF + htmlPlaceCurrent + htmlAFSuport + htmlPlaceCurrentSupport + htmlPlaceDestination + htmlButton;
+}
+
+function openConvoyMenue() {
+    let htmlCountry = '<label for="country">Country:</label><input id="country" type="text" value="">';
+    let htmlAF = '<label for="unit">Unit:</label><input id="unit" class="unit" type="text" value="">';
+    let htmlPlaceCurrent = '<input id="placeCurrent" type="text" value=""><p></p>';
+    let htmlAFConvoy = '<label for="unitConvoyed">C</label><input id="unitConvoyed" class="unit" type="text" value="">';
+    let htmlConvoyCurrent = '<input id="convoyCurrent" type="text" value=""><p>-----></p>';
+    let htmlPlaceDestination = '<input id="placeDestination" type="text" value="">';
+    let htmlButton = '<button id="makeConvoy" onclick="convoy();" class="make">Convoy</button>';
+    document.getElementById("inputs").innerHTML = htmlCountry + htmlAF + htmlPlaceCurrent + htmlAFConvoy + htmlConvoyCurrent + htmlPlaceDestination + htmlButton;
 }
 
 function openBuildMenue() {//clear input section, show inputs for country, A/F, place, button for build it
@@ -182,5 +193,47 @@ function build() {
         document.getElementById("place").value = "";
     } else {
         alert("unit type unrecognized");
+    }
+}
+
+function disband() {
+    let country = document.getElementById("country").value.toLowerCase();
+    let unit = document.getElementById("unit").value.toLowerCase();
+    let place = document.getElementById("place").value.toLowerCase();
+    if (!countries.has(country)) {
+        alert(country + " does not exist");
+        return;
+    }
+    if (!places.has(place)) {
+        alert(place + " does not exist");
+        return;
+    }
+    if (unit == "a") {
+        let index = countries.get(country).armyPlaces.indexOf(place);
+        if (index > -1) {//if the place has an army from that country there
+            countries.get(country).removeArmy(index);
+            document.getElementById("country").value = "";
+            document.getElementById("unit").value = "";
+            document.getElementById("place").value = "";
+        }
+        else {
+            alert("No army from " + country + " is at " + place);
+        }
+    }
+    else if (unit == "f") {
+        let index = countries.get(country).fleetPlaces.indexOf(place);
+        if (index > -1) {
+            countries.get(country).removeFleet(index);
+            document.getElementById("country").value = "";//clearing the inputs
+            document.getElementById("unit").value = "";
+            document.getElementById("place").value = "";
+        }
+        else {
+            alert("No fleet from " + country + " is at " + place);
+        }
+    }
+
+    else {
+        alert("Unit type unrecognized");
     }
 }

@@ -26,6 +26,16 @@ class Country {
             this.fleets[i].draw(ctx);
         }
     }
+
+    removeArmy(index) {//remove an army at the index specified
+        this.armyPlaces.splice(index, 1);
+        this.armies.splice(index, 1);
+    }
+
+    removeFleet(index) {
+        this.fleetPlaces.splice(index, 1);
+        this.fleets.splice(index,1);
+    }
 }
 
 function drawUnits(countries, ctx) {
